@@ -3,12 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'Login_page.dart';
 
-void main() {
-  runApp(MaterialApp(
-    home: splashPage(),
-    debugShowCheckedModeBanner: false,
-  ));
-}
+
 
 class splashPage extends StatefulWidget {
   const splashPage({super.key});
@@ -21,7 +16,7 @@ class _splashPageState extends State<splashPage> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5), () {
+    Timer(Duration(seconds: 2), () {
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => loginPage()));
     });

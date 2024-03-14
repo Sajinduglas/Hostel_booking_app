@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:hostel_app/view/mywidgets/my_textformfield.dart';
+
 import 'package:hostel_app/view/search_resultpage.dart';
 
+import 'HostelDetailPage.dart';
 import 'Popular_hostel.dart';
 
-class homePage extends StatelessWidget {
+class homePage extends StatefulWidget {
+  @override
+  State<homePage> createState() => _homePageState();
+}
+
+class _homePageState extends State<homePage> {
   // const ({super.key});
+  int index = 0;
+  late int tapindex;
+  final cityNameController = TextEditingController();
+  final genderController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 80,
+        // elevation: 5,
         leading: IconButton(
             onPressed: () {},
             icon: Icon(
@@ -55,38 +68,11 @@ class homePage extends StatelessWidget {
                     fontWeight: FontWeight.normal,
                     color: Colors.black),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: Color(0xFFd6e5ea),
-                    hintText: "eg Enter cities in ernakulam",
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide.none
-                        // borderSide: BorderSide(color: Colors.black87)
-                        ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    fillColor: Color(0xFFd6e5ea),
-                    filled: true,
-                    hintText: "eg Enter gender",
-                    // prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide.none
-                        // borderSide: BorderSide(color: Colors.black87)
-                        ),
-                  ),
-                ),
-              ),
+              MyTextFormField(
+                  contentName: "eg Enter cities in ernakulam",
+                  controller: cityNameController),
+              MyTextFormField(
+                  contentName: "eg Enter gender", controller: genderController),
               SizedBox(
                 height: 10,
               ),
@@ -95,7 +81,8 @@ class homePage extends StatelessWidget {
                 width: 250,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
                       return searchResultPage();
                     }));
                   },
@@ -141,7 +128,8 @@ class homePage extends StatelessWidget {
                         TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
                 trailing: TextButton(
                   onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (context) {
                       return popularHostelPage();
                     }));
                   },
@@ -153,64 +141,70 @@ class homePage extends StatelessWidget {
                 // color: Colors.blueGrey,
                 height: 600,
                 child: ListView.builder(
-                    itemCount: 10,
-                    itemBuilder: (context, index) => Card(
-                            child: SizedBox(
-                          height: 120,
-                          width: 150,
-                          child: Row(
-                            children: [
-                              Container(
-                                  height: 100,
-                                  width: 150,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(15),
-                                    child: Image.asset(
-                                      "assets/Images/hostel pic2.jpeg",
-                                      fit: BoxFit.fill,
-                                    ),
-                                  )),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text(
-                                    "Asado boys hostel",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF568896),
-                                        fontSize: 18),
+                  physics: BouncingScrollPhysics(),
+                  itemCount: 10,
+                  itemBuilder: (context, index) => InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => hostelDetailsPage()));
+                    },
+                    child: Card(
+                      child: SizedBox(
+                        height: 120,
+                        width: 150,
+                        child: Row(
+                          children: [
+                            Container(
+                                height: 100,
+                                width: 150,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(15),
+                                  child: Image.asset(
+                                    "assets/Images/hostel pic2.jpeg",
+                                    fit: BoxFit.fill,
                                   ),
-                                  Text('No 505 ,vazhakala,Kakanad'),
-                                  Wrap(
-                                    children: [
-                                      Text("Avalable "),
-                                      Icon(Icons.wifi),
-                                      Icon(Icons.emoji_food_beverage),
-                                      Icon(Icons.bed)
-                                    ],
-                                  ),
-                                  Text('Rate 6000/m',
-                                      style:
-                                          TextStyle(color: Color(0xFF568896))),
-                                ],
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Icon(Icons.favorite,
-                                      color: Color(0xFF568896)),
-                                  SizedBox(
-                                    height: 20,
-                                  )
-                                ],
-                              )
-                            ],
-                          ),
-                        ))),
+                                )),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Text(
+                                  "Asado boys hostel",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF568896),
+                                      fontSize: 18),
+                                ),
+                                Text('No 505 ,vazhakala,Kakanad'),
+                                Wrap(
+                                  children: [
+                                    Text("Avalable "),
+                                    Icon(Icons.wifi),
+                                    Icon(Icons.emoji_food_beverage),
+                                    Icon(Icons.bed)
+                                  ],
+                                ),
+                                Text('Rate 6000/m',
+                                    style: TextStyle(color: Color(0xFF568896))),
+                              ],
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Icon(Icons.favorite, color: Color(0xFF568896)),
+                                SizedBox(
+                                  height: 20,
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               )
             ],
           ),

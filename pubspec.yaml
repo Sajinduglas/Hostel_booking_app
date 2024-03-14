@@ -32,6 +32,8 @@ dependencies:
     sdk: flutter
   lottie: ^3.0.0
   flutter_custom_clippers: ^2.1.0
+  firebase_auth: ^4.17.4
+  firebase_core: ^2.25.4
 
 
 

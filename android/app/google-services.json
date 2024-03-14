@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "153792169910",
+    "project_id": "myspot-hostel-booking-app",
+    "storage_bucket": "myspot-hostel-booking-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153792169910:android:d26e5b9e587f4ae5f8a317",
+        "android_client_info": {
+          "package_name": "com.example.hostel_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgvKhJUftxGUeFYLW44UnBpeH-HoWEjVA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
